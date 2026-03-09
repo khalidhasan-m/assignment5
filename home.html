@@ -79,7 +79,7 @@
       <!------------------- navbar ends here --------------------->
     </header>
     <!------------- main section starts from here ---------------->
-    <main class="my-12 mx-52">
+    <main class="mx-auto my-6 md:my-12 md:mx-24 lg:mx-52">
       <!----------- button section starts from section ----------->
       <section class="flex gap-4 bg-white p-6 rounded-lg shadow-sm mb-4">
         <div>
@@ -95,31 +95,145 @@
         <div
           class="flex justify-between items-center p-6 bg-white rounded-lg mb-6"
         >
-          <div class="flex gap-4">
+          <div class="flex items-center gap-4">
             <img class="w-10 h-10" src="./assets/Aperture.png" alt="" />
             <div>
               <h2>50 Issues</h2>
               <p>Track and manage your project issues</p>
             </div>
           </div>
-          <div class="flex gap-3 items-center">
-            <img src="./assets/Open-Status.png" alt="open status icon" />
-            <p>open</p>
-            <img src="./assets/Closed- Status .png" alt="closed status icon" />
-            <p>closed</p>
+          <div class="flex flex-wrap gap-3 items-center">
+            <div class="flex gap-3 items-center">
+              <img
+                class="w-4 h-4"
+                src="./assets/Ellipse 2.png"
+                alt="open status icon"
+              />
+              <p>open</p>
+            </div>
+            <div class="flex gap-3 items-center">
+              <img
+                class="w-4 h-4"
+                src="./assets/Ellipse 2 (1).png"
+                alt="closed status icon"
+              />
+              <p>closed</p>
+            </div>
           </div>
         </div>
         <!-- issue cards will be here -->
-        <div class="p-6 grid grid-cols-4 gap-3">
+        <div class="p-6 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
           <!-- card1 -->
-          <div class="bg-white p-4 rounded-lg">
+          <div class="bg-white p-4 rounded-lg space-y-5">
             <div class="flex justify-between items-center">
               <img src="./assets/Open-Status.png" alt="open status icon" />
               <span class="btn btn-soft btn-error rounded-3xl w-28">High</span>
             </div>
-            <div></div>
-            <div></div>
-            <div></div>
+            <div>
+              <p class="font-bold text-base">
+                Fix navigation menu on mobile devices
+              </p>
+              <p class="text-base font-normal text-[#64748B]">
+                The navigation menu doesn't collapse properly on mobile
+                devices...
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-3 items-center justify-between">
+              <span class="btn btn-soft btn-error rounded-3xl w-fit"
+                ><i class="fa-solid fa-bug"></i>BUG</span
+              >
+              <span class="btn btn-soft btn-warning rounded-3xl w-fit"
+                ><i class="fa-solid fa-handshake-angle"></i>HELP WANTED</span
+              >
+            </div>
+            <div class="border-t-2 border-gray-100 pt-4">
+              <p class="text-base font-normal text-[#64748B]">#1 by john_doe</p>
+              <p class="text-base font-normal text-[#64748B]">1/15/2024</p>
+            </div>
+          </div>
+          <!-- card-2 -->
+          <div class="bg-white p-4 rounded-lg space-y-5">
+            <div class="flex justify-between items-center">
+              <img src="./assets/Open-Status.png" alt="open status icon" />
+              <span class="btn btn-soft btn-error rounded-3xl w-28">High</span>
+            </div>
+            <div>
+              <p class="font-bold text-base">
+                Fix navigation menu on mobile devices
+              </p>
+              <p class="text-base font-normal text-[#64748B]">
+                The navigation menu doesn't collapse properly on mobile
+                devices...
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-3 items-center justify-between">
+              <span class="btn btn-soft btn-error rounded-3xl w-fit"
+                ><i class="fa-solid fa-bug"></i>BUG</span
+              >
+              <span class="btn btn-soft btn-warning rounded-3xl w-fit"
+                ><i class="fa-solid fa-handshake-angle"></i>HELP WANTED</span
+              >
+            </div>
+            <div class="border-t-2 border-gray-100 pt-4">
+              <p class="text-base font-normal text-[#64748B]">#1 by john_doe</p>
+              <p class="text-base font-normal text-[#64748B]">1/15/2024</p>
+            </div>
+          </div>
+          <!-- card-3 -->
+          <div class="bg-white p-4 rounded-lg space-y-5">
+            <div class="flex justify-between items-center">
+              <img src="./assets/Open-Status.png" alt="open status icon" />
+              <span class="btn btn-soft btn-error rounded-3xl w-28">High</span>
+            </div>
+            <div>
+              <p class="font-bold text-base">
+                Fix navigation menu on mobile devices
+              </p>
+              <p class="text-base font-normal text-[#64748B]">
+                The navigation menu doesn't collapse properly on mobile
+                devices...
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-3 items-center justify-between">
+              <span class="btn btn-soft btn-error rounded-3xl w-fit"
+                ><i class="fa-solid fa-bug"></i>BUG</span
+              >
+              <span class="btn btn-soft btn-warning rounded-3xl w-fit"
+                ><i class="fa-solid fa-handshake-angle"></i>HELP WANTED</span
+              >
+            </div>
+            <div class="border-t-2 border-gray-100 pt-4">
+              <p class="text-base font-normal text-[#64748B]">#1 by john_doe</p>
+              <p class="text-base font-normal text-[#64748B]">1/15/2024</p>
+            </div>
+          </div>
+          <!-- card-4 -->
+          <div class="bg-white p-4 rounded-lg space-y-5">
+            <div class="flex justify-between items-center">
+              <img src="./assets/Open-Status.png" alt="open status icon" />
+              <span class="btn btn-soft btn-error rounded-3xl w-28">High</span>
+            </div>
+            <div>
+              <p class="font-bold text-base">
+                Fix navigation menu on mobile devices
+              </p>
+              <p class="text-base font-normal text-[#64748B]">
+                The navigation menu doesn't collapse properly on mobile
+                devices...
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-3 items-center justify-between">
+              <span class="btn btn-soft btn-error rounded-3xl w-fit"
+                ><i class="fa-solid fa-bug"></i>BUG</span
+              >
+              <span class="btn btn-soft btn-warning rounded-3xl w-fit"
+                ><i class="fa-solid fa-handshake-angle"></i>HELP WANTED</span
+              >
+            </div>
+            <div class="border-t-2 border-gray-100 pt-4">
+              <p class="text-base font-normal text-[#64748B]">#1 by john_doe</p>
+              <p class="text-base font-normal text-[#64748B]">1/15/2024</p>
+            </div>
           </div>
         </div>
       </section>
