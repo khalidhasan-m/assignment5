@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | GitHub Issue Tracker</title>
+    <link
+      rel="shortcut icon"
+      href="./assets/github-logo.png"
+      type="image/x-icon"
+    />
+
+    <!-- daisyUI and Tailwind CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- google fonts  (geist)-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- font awesome cdn -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- css style here -->
+    <link rel="stylesheet" href="./styles/style.css" />
+  </head>
+  <body class="bg-[#F8FAFC]">
+    <header>
+      <!----------------- navbar starts from here ---------------->
+      <nav>
+        <div
+          class="navbar flex flex-col md:flex-row items-center justify-between gap-4 bg-base-100 shadow-sm mx-auto"
+        >
+          <div class="flex mx-auto md:ml-20">
+            <img
+              src="./assets/github-logo.png"
+              alt="logo icon"
+              class="w-10 h-10"
+            />
+            <a class="btn btn-ghost text-xl">GitHub Issue Tracker</a>
+          </div>
+          <div class="flex gap-4 mx-auto md:mr-20">
+            <label class="input">
+              <svg
+                class="h-[1em] opacity-50"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  stroke-linejoin="round"
+                  stroke-linecap="round"
+                  stroke-width="2.5"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.3-4.3"></path>
+                </g>
+              </svg>
+              <input type="search" required placeholder="Search" />
+            </label>
+            <button class="btn btn-primary">
+              <i class="fa-solid fa-plus"></i> New Issue
+            </button>
+          </div>
+        </div>
+      </nav>
+      <!------------------- navbar ends here --------------------->
+    </header>
+    <!------------- main section starts from here ---------------->
+    <main class="my-12 mx-52">
+      <!----------- button section starts from section ----------->
+      <section class="flex gap-4 bg-white p-6 rounded-lg shadow-sm mb-4">
+        <div>
+          <button class="btn btn-primary w-28">All</button>
+          <button class="btn btn-soft btn-primary w-28">Open</button>
+          <button class="btn btn-soft btn-primary w-28">Closed</button>
+        </div>
+      </section>
+      <!------------- button section ends section ----------------->
+        <!------------- issues section starts from here ------------->
+        <section class="bg-[#FBFBFB] rounded-lg shadow-lg">
+            <!-- total issue and status -->
+            <div class="flex justify-between items-center p-6 bg-white rounded-lg mb-6">
+                <div class="flex gap-4">
+                    <img class="w-10 h-10" src="./assets/Aperture.png" alt="">
+                    <div>
+                        <h2>50 Issues</h2>
+                        <p>Track and manage your project issues</p>
+                    </div>
+                </div>
+                <div class="flex gap-3 items-center">
+                    <img src="./assets/Open-Status.png" alt="open status icon">
+                    <p>open</p>
+                    <img src="./assets/Closed- Status .png" alt="closed status icon">
+                    <p>closed</p>
+                </div>
+            </div>
+            <!-- issue cards will be here -->
+            <div class="p-6 grid grid-cols-4 gap-3">
+                <!-- card1 -->
+                <div class="bg-white p-4 rounded-lg">
+                    <div class="flex justify-between items-center">
+                        <img src="./assets/Open-Status.png" alt="open status icon">
+                        <span class="btn btn-soft btn-error rounded-3xl w-28">High</span>
+                    </div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+
+        </section>
+        <!------------- issues section ends here -------------------->
+    </main>
+    <!----------------- main section ends here ------------------->
+  </body>
+</html>
