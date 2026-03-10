@@ -52,7 +52,7 @@ function getLabelBadge(label, soft = true) {
 
 // Card template
 function createCard(issue) {
-  const statusIcon = issue.status === "open" ? "./assets/Open-Status.png" : "./assets/Closed-Status.png";
+  const statusIcon = issue.status === "open" ? "./assets/Open-Status.png" : "./assets/Closed-status.png";
   const borderColor = issue.status === "open" ? "border-green-500" : "border-violet-500";
 
   const priorityClass =
