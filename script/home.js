@@ -56,7 +56,7 @@ function createCard(issue) {
   const statusIcon =
     issue.status === "open"
       ? "./assets/Open-Status.png"
-      : "./assets/Status.png";
+      : "./assets/closeStatus.png";
   const borderColor =
     issue.status === "open" ? "border-green-500" : "border-violet-500";
 
