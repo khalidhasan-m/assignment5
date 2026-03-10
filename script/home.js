@@ -24,27 +24,46 @@ const toggleSpinner = (show) => {
   spinner.style.display = show ? "flex" : "none";
 };
 
+// Helper for label badges
+function getLabelBadge(label, soft = true) {
+  let icon = '<i class="fa-solid fa-circle"></i>';
+  let base = soft ? "badge badge-soft badge-outline" : "badge badge-outline";
+  const lower = label.toLowerCase();
+
+  if (lower.includes("bug")) {
+    icon = '<i class="fa-solid fa-bug"></i>';
+    base = soft ? "badge badge-error badge-soft" : "badge badge-error";
+  } else if (lower.includes("enhancement")) {
+    icon = '<i class="fa-solid fa-wrench"></i>';
+    base = soft ? "badge badge-success badge-soft" : "badge badge-success";
+  } else if (lower.includes("help wanted")) {
+    icon = '<i class="fa-solid fa-handshake"></i>';
+    base = soft ? "badge badge-warning badge-soft" : "badge badge-warning";
+  } else if (lower.includes("documentation")) {
+    icon = '<i class="fa-brands fa-readme"></i>';
+    base = soft ? "badge badge-info badge-soft" : "badge badge-info";
+  } else if (lower.includes("good first issue")) {
+    icon = '<i class="fa-solid fa-circle-exclamation"></i>';
+    base = soft ? "badge badge-primary badge-soft" : "badge badge-primary";
+  }
+
+  return `<span class="${base} flex items-center gap-1 px-2 py-1 text-[12px]">${icon} ${label}</span>`;
+}
+
 // Card template
 function createCard(issue) {
-  const statusIcon =
-    issue.status === "open"
-      ? "./assets/Open-Status.png"
-      : "./assets/Closed-Status.png";
+  const statusIcon = issue.status === "open" ? "./assets/Open-Status.png" : "./assets/Closed-Status.png";
+  const borderColor = issue.status === "open" ? "border-green-500" : "border-violet-500";
 
-  const borderColor =
-    issue.status === "open" ? "border-green-500" : "border-violet-500";
-
-  // Priority as badge
-  let priorityClass = "badge badge-outline badge-soft"; // normal time
-  const p = issue.priority.toLowerCase();
-  if (p === "high") priorityClass = "badge badge-error badge-soft";
-  else if (p === "medium") priorityClass = "badge badge-warning badge-soft";
-  else if (p === "low") priorityClass = "badge badge-neutral badge-soft";
+  const priorityClass =
+    issue.priority.toLowerCase() === "high" ? "badge badge-error badge-soft" :
+    issue.priority.toLowerCase() === "medium" ? "badge badge-warning badge-soft" :
+    "badge badge-neutral badge-soft";
 
   return `
     <div onclick="loadIssueDetails(${issue.id})" 
          class="bg-white p-4 border-t-4 ${borderColor} rounded-lg h-[350px] flex flex-col space-y-3">
-      
+
       <!-- Top row -->
       <div class="flex justify-between items-center h-16">
         <img src="${statusIcon}" alt="${issue.status} status icon" />
@@ -61,30 +80,7 @@ function createCard(issue) {
 
       <!-- Labels -->
       <div class="flex gap-2 flex-wrap pb-2">
-        ${issue.labels.map(label => {
-          let icon = '<i class="fa-solid fa-circle"></i>';
-          let badgeClass = "badge badge-outline badge-soft"; // default soft badge
-
-          const lower = label.toLowerCase();
-          if (lower.includes("bug")) {
-            icon = '<i class="fa-solid fa-bug"></i>';
-            badgeClass = "badge badge-error badge-soft";
-          } else if (lower.includes("enhancement")) {
-            icon = '<i class="fa-solid fa-wrench"></i>';
-            badgeClass = "badge badge-success badge-soft";
-          } else if (lower.includes("help wanted")) {
-            icon = '<i class="fa-solid fa-handshake"></i>';
-            badgeClass = "badge badge-warning badge-soft";
-          } else if (lower.includes("documentation")) {
-            icon = '<i class="fa-brands fa-readme"></i>';
-            badgeClass = "badge badge-info badge-soft";
-          } else if (lower.includes("good first issue")) {
-            icon = '<i class="fa-solid fa-circle-exclamation"></i>';
-            badgeClass = "badge badge-primary badge-soft";
-          }
-
-          return `<span class="${badgeClass} flex items-center gap-1 px-2 py-1 text-[12px]">${icon} ${label}</span>`;
-        }).join("")}
+        ${issue.labels.map(label => getLabelBadge(label)).join("")}
       </div>
 
       <!-- Footer -->
@@ -150,7 +146,6 @@ searchInput.addEventListener("keypress", e => {
 // Modal
 async function loadIssueDetails(id) {
   const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
-
   const res = await fetch(url);
   const data = await res.json();
   const issue = data.data;
@@ -165,44 +160,24 @@ async function loadIssueDetails(id) {
 
   // Assignee
   document.getElementById("modalAssignee").textContent = issue.author;
-  document.getElementById("modalPriority").textContent = issue.priority.toUpperCase();
 
-  // Status
+  // Priority badge
+  const modalPriorityBadge = document.getElementById("modalPriority");
+  modalPriorityBadge.textContent = issue.priority.toUpperCase();
+  modalPriorityBadge.className = `badge ${
+    issue.priority.toLowerCase() === "high" ? "badge-error" :
+    issue.priority.toLowerCase() === "medium" ? "badge-warning" :
+    "badge-neutral"
+  } badge`;
+
+  // Status badge
   const statusBadge = document.getElementById("modalStatus");
   statusBadge.textContent = issue.status === "open" ? "Opened" : "Closed";
-  statusBadge.className = issue.status === "open" ? "badge badge-success" : "badge badge-error";
+  statusBadge.className = issue.status === "open" ? "badge badge-success" : "badge badge-primary";
 
   // Labels
   const labelsContainer = document.getElementById("modalLabels");
-  labelsContainer.innerHTML = "";
-
-  issue.labels.forEach(label => {
-    let icon = '<i class="fa-solid fa-circle"></i>';
-    let badgeClass = "badge badge-outline"; // default
-
-    const lower = label.toLowerCase();
-    if (lower.includes("bug")) {
-      icon = '<i class="fa-solid fa-bug"></i>';
-      badgeClass = "badge badge-error";
-    } else if (lower.includes("enhancement")) {
-      icon = '<i class="fa-solid fa-wrench"></i>';
-      badgeClass = "badge badge-success";
-    } else if (lower.includes("help wanted")) {
-      icon = '<i class="fa-solid fa-handshake"></i>';
-      badgeClass = "badge badge-warning";
-    } else if (lower.includes("documentation")) {
-      icon = '<i class="fa-brands fa-readme"></i>';
-      badgeClass = "badge badge-info";
-    } else if (lower.includes("good first issue")) {
-      icon = '<i class="fa-solid fa-circle-exclamation"></i>';
-      badgeClass = "badge badge-primary";
-    }
-
-    const span = document.createElement("span");
-    span.className = `${badgeClass} flex items-center gap-1`;
-    span.innerHTML = `${icon} ${label}`;
-    labelsContainer.appendChild(span);
-  });
+  labelsContainer.innerHTML = issue.labels.map(label => getLabelBadge(label, false)).join("");
 
   // Show modal
   document.getElementById("issueModal").showModal();
