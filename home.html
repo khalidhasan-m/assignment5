@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home | GitHub Issue Tracker</title>
+    <title>Login | GitHub Issue Tracker</title>
     <link
       rel="shortcut icon"
       href="./assets/github-logo.png"
@@ -37,208 +37,115 @@
   </head>
   <body class="bg-[#F8FAFC]">
     <header>
-      <!----------------- navbar starts from here ---------------->
-      <nav>
-        <div
-          class="navbar flex flex-col md:flex-row items-center justify-between gap-4 bg-base-100 shadow-sm mx-auto"
-        >
-          <div class="flex mx-auto md:ml-20">
-            <img
-              src="./assets/github-logo.png"
-              alt="logo icon"
-              class="w-10 h-10"
-            />
-            <a class="btn btn-ghost text-xl">GitHub Issue Tracker</a>
-          </div>
-          <div class="flex gap-4 mx-auto md:mr-20">
-            <label class="input">
-              <svg
-                class="h-[1em] opacity-50"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-              >
-                <g
-                  stroke-linejoin="round"
-                  stroke-linecap="round"
-                  stroke-width="2.5"
-                  fill="none"
-                  stroke="currentColor"
-                >
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <path d="m21 21-4.3-4.3"></path>
-                </g>
-              </svg>
-              <input type="search" required placeholder="Search" />
-            </label>
-            <button class="btn btn-primary">
-              <i class="fa-solid fa-plus"></i> New Issue
-            </button>
-          </div>
+      <nav
+        class="navbar flex flex-col md:flex-row items-center justify-between gap-4 bg-base-100 shadow-sm mx-auto"
+      >
+        <div class="flex mx-auto md:ml-20">
+          <img
+            src="./assets/github-logo.png"
+            alt="logo icon"
+            class="w-10 h-10"
+          />
+          <a class="btn btn-ghost text-xl">GitHub Issue Tracker</a>
+        </div>
+        <div class="flex gap-4 mx-auto md:mr-20">
+          <label class="input">
+            <input id="search-input" type="search" placeholder="Search" />
+          </label>
+          <button id="new-issue-btn" class="btn btn-primary">
+            <i class="fa-solid fa-plus"></i> New Issue
+          </button>
         </div>
       </nav>
-      <!------------------- navbar ends here --------------------->
     </header>
-    <!------------- main section starts from here ---------------->
+
     <main class="mx-auto my-6 md:my-12 md:mx-24 lg:mx-52">
-      <!----------- button section starts from section ----------->
+      <!-- Tabs -->
       <section class="flex gap-4 bg-white p-6 rounded-lg shadow-sm mb-4">
-        <div>
-          <button class="btn btn-primary w-28">All</button>
-          <button class="btn btn-soft btn-primary w-28">Open</button>
-          <button class="btn btn-soft btn-primary w-28">Closed</button>
-        </div>
+        <button id="all-btn" class="btn btn-primary w-28">All</button>
+        <button id="open-btn" class="btn btn-soft w-28">Open</button>
+        <button id="closed-btn" class="btn btn-soft w-28">Closed</button>
       </section>
-      <!------------- button section ends section ----------------->
-      <!------------- issues section starts from here ------------->
-      <section class="bg-[#FBFBFB] rounded-lg shadow-lg">
-        <!-- total issue and status -->
+
+      <!-- Issues -->
+      <section id="issues-section" class="bg-[#FBFBFB] rounded-lg shadow-lg">
         <div
           class="flex justify-between items-center p-6 bg-white rounded-lg mb-6"
         >
           <div class="flex items-center gap-4">
             <img class="w-10 h-10" src="./assets/Aperture.png" alt="" />
             <div>
-              <h2>50 Issues</h2>
+              <h2 id="total-issues">0 Issues</h2>
               <p>Track and manage your project issues</p>
             </div>
           </div>
-          <div class="flex flex-wrap gap-3 items-center">
-            <div class="flex gap-3 items-center">
-              <img
-                class="w-4 h-4"
-                src="./assets/Ellipse 2.png"
-                alt="open status icon"
-              />
-              <p>open</p>
-            </div>
-            <div class="flex gap-3 items-center">
-              <img
-                class="w-4 h-4"
-                src="./assets/Ellipse 2 (1).png"
-                alt="closed status icon"
-              />
-              <p>closed</p>
-            </div>
+        </div>
+
+        <!-- Spinner -->
+        <div class="flex justify-center py-6">
+          <div id="spinner" class="hidden">
+            <span class="loading loading-spinner text-success"></span>
           </div>
         </div>
-        <!-- issue cards will be here -->
-        <div class="p-6 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
-          <!-- card1 -->
-          <div class="bg-white p-4 rounded-lg space-y-5">
-            <div class="flex justify-between items-center">
-              <img src="./assets/Open-Status.png" alt="open status icon" />
-              <span class="btn btn-soft btn-error rounded-3xl w-28">High</span>
-            </div>
-            <div>
-              <p class="font-bold text-base">
-                Fix navigation menu on mobile devices
-              </p>
-              <p class="text-base font-normal text-[#64748B]">
-                The navigation menu doesn't collapse properly on mobile
-                devices...
-              </p>
-            </div>
-            <div class="flex flex-wrap gap-3 items-center justify-between">
-              <span class="btn btn-soft btn-error rounded-3xl w-fit"
-                ><i class="fa-solid fa-bug"></i>BUG</span
-              >
-              <span class="btn btn-soft btn-warning rounded-3xl w-fit"
-                ><i class="fa-solid fa-handshake-angle"></i>HELP WANTED</span
-              >
-            </div>
-            <div class="border-t-2 border-gray-100 pt-4">
-              <p class="text-base font-normal text-[#64748B]">#1 by john_doe</p>
-              <p class="text-base font-normal text-[#64748B]">1/15/2024</p>
-            </div>
-          </div>
-          <!-- card-2 -->
-          <div class="bg-white p-4 rounded-lg space-y-5">
-            <div class="flex justify-between items-center">
-              <img src="./assets/Open-Status.png" alt="open status icon" />
-              <span class="btn btn-soft btn-error rounded-3xl w-28">High</span>
-            </div>
-            <div>
-              <p class="font-bold text-base">
-                Fix navigation menu on mobile devices
-              </p>
-              <p class="text-base font-normal text-[#64748B]">
-                The navigation menu doesn't collapse properly on mobile
-                devices...
-              </p>
-            </div>
-            <div class="flex flex-wrap gap-3 items-center justify-between">
-              <span class="btn btn-soft btn-error rounded-3xl w-fit"
-                ><i class="fa-solid fa-bug"></i>BUG</span
-              >
-              <span class="btn btn-soft btn-warning rounded-3xl w-fit"
-                ><i class="fa-solid fa-handshake-angle"></i>HELP WANTED</span
-              >
-            </div>
-            <div class="border-t-2 border-gray-100 pt-4">
-              <p class="text-base font-normal text-[#64748B]">#1 by john_doe</p>
-              <p class="text-base font-normal text-[#64748B]">1/15/2024</p>
-            </div>
-          </div>
-          <!-- card-3 -->
-          <div class="bg-white p-4 rounded-lg space-y-5">
-            <div class="flex justify-between items-center">
-              <img src="./assets/Open-Status.png" alt="open status icon" />
-              <span class="btn btn-soft btn-error rounded-3xl w-28">High</span>
-            </div>
-            <div>
-              <p class="font-bold text-base">
-                Fix navigation menu on mobile devices
-              </p>
-              <p class="text-base font-normal text-[#64748B]">
-                The navigation menu doesn't collapse properly on mobile
-                devices...
-              </p>
-            </div>
-            <div class="flex flex-wrap gap-3 items-center justify-between">
-              <span class="btn btn-soft btn-error rounded-3xl w-fit"
-                ><i class="fa-solid fa-bug"></i>BUG</span
-              >
-              <span class="btn btn-soft btn-warning rounded-3xl w-fit"
-                ><i class="fa-solid fa-handshake-angle"></i>HELP WANTED</span
-              >
-            </div>
-            <div class="border-t-2 border-gray-100 pt-4">
-              <p class="text-base font-normal text-[#64748B]">#1 by john_doe</p>
-              <p class="text-base font-normal text-[#64748B]">1/15/2024</p>
-            </div>
-          </div>
-          <!-- card-4 -->
-          <div class="bg-white p-4 rounded-lg space-y-5">
-            <div class="flex justify-between items-center">
-              <img src="./assets/Open-Status.png" alt="open status icon" />
-              <span class="btn btn-soft btn-error rounded-3xl w-28">High</span>
-            </div>
-            <div>
-              <p class="font-bold text-base">
-                Fix navigation menu on mobile devices
-              </p>
-              <p class="text-base font-normal text-[#64748B]">
-                The navigation menu doesn't collapse properly on mobile
-                devices...
-              </p>
-            </div>
-            <div class="flex flex-wrap gap-3 items-center justify-between">
-              <span class="btn btn-soft btn-error rounded-3xl w-fit"
-                ><i class="fa-solid fa-bug"></i>BUG</span
-              >
-              <span class="btn btn-soft btn-warning rounded-3xl w-fit"
-                ><i class="fa-solid fa-handshake-angle"></i>HELP WANTED</span
-              >
-            </div>
-            <div class="border-t-2 border-gray-100 pt-4">
-              <p class="text-base font-normal text-[#64748B]">#1 by john_doe</p>
-              <p class="text-base font-normal text-[#64748B]">1/15/2024</p>
-            </div>
-          </div>
-        </div>
+
+        <!-- Containers -->
+        <div
+          id="all-issue-container"
+          class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3"
+        ></div>
+        <div
+          id="open-issue-container"
+          class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3"
+        ></div>
+        <div
+          id="closed-issue-container"
+          class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3"
+        ></div>
       </section>
-      <!------------- issues section ends here -------------------->
+      <!-- Issue Details Modal -->
+      <dialog id="issueModal" class="modal">
+        <div class="modal-box max-w-2xl">
+          <!-- Title -->
+          <h2 id="modalTitle" class="text-2xl font-bold mb-2"></h2>
+
+          <!-- Status + author + date -->
+          <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+            <span id="modalStatus" class="badge badge-success">Opened</span>
+            <span>•</span>
+            <span id="modalAuthor"></span>
+            <span>•</span>
+            <span id="modalDate"></span>
+          </div>
+
+          <!-- Labels -->
+          <div id="modalLabels" class="flex gap-2 mb-4 flex-wrap"></div>
+
+          <!-- Description -->
+          <p id="modalDescription" class="text-gray-600 mb-6"></p>
+
+          <!-- Bottom section -->
+          <div class="bg-gray-100 rounded-lg p-4 flex justify-between">
+            <div>
+              <p class="text-sm text-gray-500">Assignee:</p>
+              <p id="modalAssignee" class="font-semibold"></p>
+            </div>
+
+            <div>
+              <p class="text-sm text-gray-500">Priority:</p>
+              <span id="modalPriority" class="badge badge-error"></span>
+            </div>
+          </div>
+
+          <!-- Close button -->
+          <div class="modal-action">
+            <form method="dialog">
+              <button class="btn btn-primary">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </main>
-    <!----------------- main section ends here ------------------->
+
+    <script src="./script/home.js"></script>
   </body>
 </html>
