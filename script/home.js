@@ -17,7 +17,8 @@ const spinner = document.getElementById("spinner");
 
 // APIs
 const allIssuesAPI = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
-const searchAPI = "https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=";
+const searchAPI =
+  "https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=";
 
 // Spinner toggle
 const toggleSpinner = (show) => {
@@ -52,13 +53,19 @@ function getLabelBadge(label, soft = true) {
 
 // Card template
 function createCard(issue) {
-  const statusIcon = issue.status === "open" ? "./assets/Open-Status.png" : "./assets/closed-status.png";
-  const borderColor = issue.status === "open" ? "border-green-500" : "border-violet-500";
+  const statusIcon =
+    issue.status === "open"
+      ? "./assets/Open-Status.png"
+      : "./assets/Status.png";
+  const borderColor =
+    issue.status === "open" ? "border-green-500" : "border-violet-500";
 
   const priorityClass =
-    issue.priority.toLowerCase() === "high" ? "badge badge-error badge-soft" :
-    issue.priority.toLowerCase() === "medium" ? "badge badge-warning badge-soft" :
-    "badge badge-neutral badge-soft";
+    issue.priority.toLowerCase() === "high"
+      ? "badge badge-error badge-soft"
+      : issue.priority.toLowerCase() === "medium"
+        ? "badge badge-warning badge-soft"
+        : "badge badge-neutral badge-soft";
 
   return `
     <div onclick="loadIssueDetails(${issue.id})" 
@@ -80,7 +87,7 @@ function createCard(issue) {
 
       <!-- Labels -->
       <div class="flex gap-2 flex-wrap pb-2">
-        ${issue.labels.map(label => getLabelBadge(label)).join("")}
+        ${issue.labels.map((label) => getLabelBadge(label)).join("")}
       </div>
 
       <!-- Footer -->
@@ -101,10 +108,10 @@ async function loadIssues(type, searchText = "") {
   const data = await res.json();
   const issues = data.data;
 
-  Object.values(containers).forEach(c => c.innerHTML = "");
+  Object.values(containers).forEach((c) => (c.innerHTML = ""));
 
   let count = 0;
-  issues.forEach(issue => {
+  issues.forEach((issue) => {
     if (type === "all" || issue.status === type) {
       containers[type].innerHTML += createCard(issue);
       count++;
@@ -113,11 +120,11 @@ async function loadIssues(type, searchText = "") {
 
   totalIssuesText.textContent = `${count} Issues`;
 
-  Object.keys(containers).forEach(key => {
+  Object.keys(containers).forEach((key) => {
     containers[key].style.display = key === type ? "grid" : "none";
   });
 
-  Object.keys(buttons).forEach(key => {
+  Object.keys(buttons).forEach((key) => {
     buttons[key].classList.toggle("btn-primary", key === type);
     buttons[key].classList.toggle("btn-soft", key !== type);
   });
@@ -134,11 +141,12 @@ buttons.open.addEventListener("click", () => loadIssues("open"));
 buttons.closed.addEventListener("click", () => loadIssues("closed"));
 
 // Search
-searchInput.addEventListener("keypress", e => {
+searchInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
-    const activeType = Object.keys(buttons).find(key =>
-      buttons[key].classList.contains("btn-primary")
-    ) || "all";
+    const activeType =
+      Object.keys(buttons).find((key) =>
+        buttons[key].classList.contains("btn-primary"),
+      ) || "all";
     loadIssues(activeType, searchInput.value.trim());
   }
 });
@@ -152,8 +160,11 @@ async function loadIssueDetails(id) {
 
   // Title, Author, Date
   document.getElementById("modalTitle").textContent = issue.title;
-  document.getElementById("modalAuthor").textContent = `Opened by ${issue.author}`;
-  document.getElementById("modalDate").textContent = new Date(issue.createdAt).toLocaleDateString();
+  document.getElementById("modalAuthor").textContent =
+    `Opened by ${issue.author}`;
+  document.getElementById("modalDate").textContent = new Date(
+    issue.createdAt,
+  ).toLocaleDateString();
 
   // Description
   document.getElementById("modalDescription").textContent = issue.description;
@@ -165,19 +176,24 @@ async function loadIssueDetails(id) {
   const modalPriorityBadge = document.getElementById("modalPriority");
   modalPriorityBadge.textContent = issue.priority.toUpperCase();
   modalPriorityBadge.className = `badge ${
-    issue.priority.toLowerCase() === "high" ? "badge-error" :
-    issue.priority.toLowerCase() === "medium" ? "badge-warning" :
-    "badge-neutral"
+    issue.priority.toLowerCase() === "high"
+      ? "badge-error"
+      : issue.priority.toLowerCase() === "medium"
+        ? "badge-warning"
+        : "badge-neutral"
   } badge`;
 
   // Status badge
   const statusBadge = document.getElementById("modalStatus");
   statusBadge.textContent = issue.status === "open" ? "Opened" : "Closed";
-  statusBadge.className = issue.status === "open" ? "badge badge-success" : "badge badge-primary";
+  statusBadge.className =
+    issue.status === "open" ? "badge badge-success" : "badge badge-primary";
 
   // Labels
   const labelsContainer = document.getElementById("modalLabels");
-  labelsContainer.innerHTML = issue.labels.map(label => getLabelBadge(label, false)).join("");
+  labelsContainer.innerHTML = issue.labels
+    .map((label) => getLabelBadge(label, false))
+    .join("");
 
   // Show modal
   document.getElementById("issueModal").showModal();
